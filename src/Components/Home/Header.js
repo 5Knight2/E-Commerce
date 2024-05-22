@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Navbar, Container, Nav } from 'react-bootstrap';
 import classes from './Header.module.css';
 
-const Header = () => {
+const Header = (props) => {
   return (
     <React.Fragment>
     <Navbar bg="dark"  variant="dark" sticky='top'>
@@ -12,7 +12,7 @@ const Header = () => {
           <Nav.Link href="#store">Store</Nav.Link>
           <Nav.Link href="#about">About</Nav.Link>
         </Nav>
-        <Button variant="secondary">Cart</Button>
+        <Button variant="secondary" onClick={props.cartClicked}>Cart</Button>
       </Container>
     </Navbar>
     <Container fluid  className={classes.container}>

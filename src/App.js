@@ -1,16 +1,22 @@
+import React,{useState} from 'react';
 import './App.css';
-import Header from './Components/UI/Header' 
-import Footer from './Components/UI/Footer'
-import Products from './Components/Home/Products'
+import Home from './Components/Home/Home' 
+
+import Cart from './Components/Cart/Cart'
+
 
 function App() {
+const[showCart,setShowCart]=useState(false);
+console.log(showCart)
+
+const cartClicked=()=>{
+  setShowCart((state)=>!state)
+}
+
   return (
     <div className="App">
-     
-    <Header></Header>
-    <Products></Products>
-    <h1>test</h1> <h1>test</h1> <h1>test</h1> <h1>test</h1> <h1>test</h1> <h1>test</h1> <h1>test</h1> <h1>test</h1> <h1>test</h1>
-   <Footer></Footer>
+     {showCart && <Cart></Cart>}  
+      <Home cartClicked={cartClicked}></Home>
     </div>
   );
 }

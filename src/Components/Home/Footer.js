@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import classes from './Footer.module.css';
-import youtube from './Logo/youtube.jpg'
-import spotify from './Logo/Spotify Logo.png'
-import facebook from './Logo/Facebook Logo.png'
+import youtube from '../UI/Logo/youtube.jpg'
+import spotify from '../UI/Logo/Spotify Logo.png'
+import facebook from '../UI/Logo/Facebook Logo.png'
 
 const Footer = () => {
   return (

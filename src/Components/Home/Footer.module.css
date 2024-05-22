@@ -1,0 +1,23 @@
+*{margin:0;
+  padding:0;
+  box-sizing: border-box;}
+
+.container{
+  position: relative;
+  bottom:0;
+  display: flex;
+  background-color: #56CCF2;
+  color: white;
+  min-height: 100px;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+.img{
+  width: 2rem;
+  height: 2rem;
+  border-radius: 15%;
+}
+.a{
+  margin: 1rem;
+}
