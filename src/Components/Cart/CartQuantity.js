@@ -7,7 +7,7 @@ const CartQuantity=(props)=>{
     return(
         <Container className={classes.container}>
             <Form >
-            <Form.Control className={classes.input} type="number" defaultValue={props.quantity} />
+            <Form.Control className={classes.input} type="number" value={props.quantity} />
             </Form>
            <Button variant="danger">Remove</Button>
         </Container>

@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import './App.css';
 import Home from './Components/Home/Home' 
-
+import CartProvider from './Store/CartProvider'
 import Cart from './Components/Cart/Cart'
 
 
@@ -14,10 +14,14 @@ const cartClicked=()=>{
 }
 
   return (
-    <div className="App">
-     {showCart && <Cart></Cart>}  
-      <Home cartClicked={cartClicked}></Home>
+    <div className='app'>
+        <CartProvider >
+      
+      {showCart && <Cart></Cart>}  
+       <Home cartClicked={cartClicked}></Home>
+     </CartProvider>
     </div>
+  
   );
 }
 

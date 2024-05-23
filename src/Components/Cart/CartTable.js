@@ -14,7 +14,7 @@ const CartTable=(props)=>{
         return( <Row>
         <Col><CartItem imageUrl={props.list[i].imageUrl} title={props.list[i].title}></CartItem></Col>
           <Col>${props.list[i].price}</Col>
-          <Col><CartQuantity Quantity={props.list[i].quantity}></CartQuantity></Col>
+          <Col><CartQuantity quantity={props.list[i].quantity}></CartQuantity></Col>
         
         </Row>)})
     return (
