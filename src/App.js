@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import './App.css';
-import Home from './Components/Home/Home' 
+import Store from './Components/Store/Store' 
 import CartProvider from './Store/CartProvider'
 import Cart from './Components/Cart/Cart'
 
@@ -18,7 +18,7 @@ const cartClicked=()=>{
         <CartProvider >
       
       {showCart && <Cart></Cart>}  
-       <Home cartClicked={cartClicked}></Home>
+       <Store cartClicked={cartClicked}></Store>
      </CartProvider>
     </div>
   

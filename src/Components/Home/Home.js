@@ -1,22 +1,27 @@
 import React from "react";
-import Header from './Header';
-import Footer from './Footer';
-import Products from "./Products";
-import About from '../About/About'
-import {createBrowserRouter, RouterProvider} from 'react-router-dom'
+import { Container } from "react-bootstrap";
+import classes from './Home.module.css'
+import TourTable from './TourTable'
 
-const router=createBrowserRouter([{path:'/',element:<Products/>},
-{path:'/about',element:<About></About>}])
 
-const Home=(props)=>{
-
-    return(<React.Fragment>
-        <Header cartClicked={props.cartClicked}></Header>
-        <RouterProvider router={router}></RouterProvider>
-          <Footer></Footer>
-    </React.Fragment>
+const Store = (props) => {
+    const data=[{date:'JUL16',
+    place:'DETROIT, MI',
+    name:'DTE ENERGY MUSIC THEATRE'},{date:'JUL26',
+    place:'Toronto, ON',
+    name:'BUDWEISER STAGE'}
+];
+    return (
+      <React.Fragment>
+        <Container className={classes.container} >
+        <h1>Tours</h1>
+        <TourTable data={data}></TourTable>
         
-    )
-}
-
-export default Home;
+        </Container>
+            <br></br>
+      </React.Fragment>
+    );
+  };
+  
+  export default Store;
+  
