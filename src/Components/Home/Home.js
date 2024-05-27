@@ -20,6 +20,7 @@ const [movies,setMovies]=useState([]);
 const getData=async()=>{
 
     try{
+        setMovies(null)
     let p=await fetch(url);
     p=await p.json();
     console.log(p)
@@ -38,7 +39,7 @@ catch(err){console.log(err)}
         </Container>
             <br></br>
   <Button onClick={getData} >Get Data</Button>
-  <p>{movies}</p>
+  {movies==null?<p>loading</p>:<p>{movies}</p>}
       </React.Fragment>
     );
   };
