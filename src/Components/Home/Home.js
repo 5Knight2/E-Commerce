@@ -8,6 +8,7 @@ const Store = (props) => {
 
 const url='https://swapi.dev/api/films/'
 const [movies,setMovies]=useState([]);
+const [isLoading,setIsLoading]=useState(false);
 
 
     const data=[{date:'JUL16',
@@ -20,11 +21,12 @@ const [movies,setMovies]=useState([]);
 const getData=async()=>{
 
     try{
-        setMovies(null)
+        setIsLoading(true);
     let p=await fetch(url);
     p=await p.json();
     console.log(p)
     setMovies(p.results[0].title)
+    setIsLoading(false)
 }
 catch(err){console.log(err)}
 
@@ -39,7 +41,7 @@ catch(err){console.log(err)}
         </Container>
             <br></br>
   <Button onClick={getData} >Get Data</Button>
-  {movies==null?<p>loading</p>:<p>{movies}</p>}
+  {isLoading==true?<p>loading...</p>:<p>{movies}</p>}
       </React.Fragment>
     );
   };
