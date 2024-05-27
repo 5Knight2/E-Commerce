@@ -6,9 +6,11 @@ import TourTable from './TourTable'
 
 const Store = (props) => {
 
-const url='https://swapi.dev/api/films/'
+const url='https://swapi.dev/api/film/'
 const [movies,setMovies]=useState([]);
 const [isLoading,setIsLoading]=useState(false);
+const [error,setError]=useState(false);
+const [retry,setRetry]=useState(true);
 
 
     const data=[{date:'JUL16',
@@ -18,17 +20,39 @@ const [isLoading,setIsLoading]=useState(false);
     name:'BUDWEISER STAGE'}
 ];
 
+
+const cancelRetry=()=>{
+    setRetry(false)
+    console.log(retry)
+}
+
+const startRetry=()=>{
+    if(retry===true)getData();
+    else console.log('stopped');
+}
+
 const getData=async()=>{
 
+    
     try{
+        
         setIsLoading(true);
     let p=await fetch(url);
+    if(!p.ok)throw new Error('Something went wrong!!  Retrying...')
+    setError(false)
     p=await p.json();
     console.log(p)
     setMovies(p.results[0].title)
     setIsLoading(false)
+   
 }
-catch(err){console.log(err)}
+catch(err){
+    setError(err.message);
+    setIsLoading(false);
+    if(retry==true)
+   setTimeout((a)=>{getData()},5000)
+
+}
 
 }
 
@@ -41,7 +65,8 @@ catch(err){console.log(err)}
         </Container>
             <br></br>
   <Button onClick={getData} >Get Data</Button>
-  {isLoading==true?<p>loading...</p>:<p>{movies}</p>}
+  {}
+  {error!=false?<p>{error} <Button onClick={cancelRetry}>X</Button></p> :isLoading==true?<p>loading...</p>:<p>{movies}</p>}
       </React.Fragment>
     );
   };
