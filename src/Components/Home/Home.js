@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import { Button, Container } from "react-bootstrap";
 import classes from './Home.module.css'
 import TourTable from './TourTable'
@@ -11,6 +11,7 @@ const [movies,setMovies]=useState([]);
 const [isLoading,setIsLoading]=useState(false);
 const [error,setError]=useState(false);
 const [retry,setRetry]=useState(true);
+const retryTimeoutRef=useRef();
 
 
     const data=[{date:'JUL16',
@@ -23,8 +24,13 @@ const [retry,setRetry]=useState(true);
 
 const cancelRetry=()=>{
     setRetry(false)
-    console.log(retry)
+    if (retryTimeoutRef.current) {
+        clearTimeout(retryTimeoutRef.current);
+      }
+    console.log('retry cancelled',retry)
 }
+
+
 
 const startRetry=()=>{
     if(retry===true)getData();
@@ -50,11 +56,15 @@ catch(err){
     setError(err.message);
     setIsLoading(false);
     if(retry==true)
-   setTimeout((a)=>{getData()},5000)
+   retryTimeoutRef.current=setTimeout((a)=>{
+startRetry()}
+,5000)
 
 }
 
 }
+
+
 
     return (
       <React.Fragment>
@@ -64,7 +74,7 @@ catch(err){
         
         </Container>
             <br></br>
-  <Button onClick={getData} >Get Data</Button>
+  <Button onClick={startRetry} >Get Data</Button>
   {}
   {error!=false?<p>{error} <Button onClick={cancelRetry}>X</Button></p> :isLoading==true?<p>loading...</p>:<p>{movies}</p>}
       </React.Fragment>
