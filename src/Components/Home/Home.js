@@ -1,4 +1,4 @@
-import React, { useState,useRef } from "react";
+import React, { useState,useRef, useEffect } from "react";
 import { Button, Container } from "react-bootstrap";
 import classes from './Home.module.css'
 import TourTable from './TourTable'
@@ -6,12 +6,13 @@ import TourTable from './TourTable'
 
 const Store = (props) => {
 
-const url='https://swapi.dev/api/film/'
+const url='https://swapi.dev/api/films/'
 const [movies,setMovies]=useState([]);
 const [isLoading,setIsLoading]=useState(false);
 const [error,setError]=useState(false);
 const [retry,setRetry]=useState(true);
 const retryTimeoutRef=useRef();
+
 
 
     const data=[{date:'JUL16',
@@ -64,7 +65,7 @@ startRetry()}
 
 }
 
-
+useEffect(getData,[])
 
     return (
       <React.Fragment>
